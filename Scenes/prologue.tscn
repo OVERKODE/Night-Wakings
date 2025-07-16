@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://0x2cpmejh1h4"]
+
+[ext_resource type="Script" uid="uid://dn4l15b36cktj" path="res://Scripts/prologue.gd" id="1_wl3ap"]
+[ext_resource type="Texture2D" uid="uid://diltkscr1eiht" path="res://Materials/Prologue/sprite_1.jpg" id="2_bem4f"]
+[ext_resource type="Texture2D" uid="uid://b262if0j2spnr" path="res://Materials/Prologue/sprite_2.jpg" id="3_vns27"]
+[ext_resource type="Texture2D" uid="uid://b5rxs2hl8l515" path="res://Materials/Prologue/sprite_3.jpg" id="4_jiqjm"]
+
+[node name="prologue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wl3ap")
+
+[node name="Sprite1" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_bem4f")
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("3_vns27")
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("4_jiqjm")

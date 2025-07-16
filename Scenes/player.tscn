@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://btqpay2fa40xp"]
+
+[ext_resource type="Script" uid="uid://bxslabovrvvop" path="res://Scripts/player.gd" id="1_v0iea"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
+
+[sub_resource type="Animation" id="Animation_v0iea"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0), Vector3(0, 0.75, 0), Vector3(0, 0.6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.60478, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6t5aa"]
+_data = {
+&"RESET": SubResource("Animation_cvnsp"),
+&"walk": SubResource("Animation_v0iea")
+}
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_v0iea")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cvnsp")
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60478, 0)
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6t5aa")
+}

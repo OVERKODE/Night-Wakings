@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtoo3nssgncs2"]
+[gd_scene load_steps=11 format=3 uid="uid://dtoo3nssgncs2"]
 
+[ext_resource type="Script" uid="uid://diug6g8e2pcg" path="res://Scripts/night_1.gd" id="1_fx6hh"]
 [ext_resource type="PackedScene" uid="uid://dehq85cb24xe6" path="res://Materials/Models/house.glb" id="1_te7d1"]
 [ext_resource type="PackedScene" uid="uid://cp8lad1gvpmjr" path="res://Materials/Models/table.glb" id="2_uf72e"]
 [ext_resource type="PackedScene" uid="uid://deu8d2ypcowm" path="res://Materials/Models/lamp.glb" id="3_fx6hh"]
+[ext_resource type="PackedScene" uid="uid://btqpay2fa40xp" path="res://Scenes/player.tscn" id="4_uf72e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mmio"]
 albedo_color = Color(0, 0.208963, 9.62615e-08, 1)
@@ -20,6 +22,7 @@ background_mode = 2
 sky = SubResource("Sky_te7d1")
 
 [node name="Night 1" type="Node3D"]
+script = ExtResource("1_fx6hh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(28.05, 0, 0, 0, 28.05, 0, 0, 0, 28.05, 0.0140185, 2.38419e-07, 0.0141916)
@@ -63,3 +66,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018878, 0.0328033, 0.1013
 light_color = Color(0.564706, 0.564706, 0.498039, 1)
 light_specular = 0.0
 light_bake_mode = 1
+
+[node name="player" parent="." instance=ExtResource("4_uf72e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6682, 1.15106, -7.79791)
