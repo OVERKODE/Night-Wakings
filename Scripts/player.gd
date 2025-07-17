@@ -3,6 +3,7 @@ extends CharacterBody3D
 var speed = 1
 var rotation_speed = 0.02
 @onready var walk_animation = $animation
+@onready var step_sound = $steps_sound
 
 func _physics_process(delta: float) -> void:
 	var input_dir = Input.get_vector("move_forward", "move_back", "move_left", "move_right")
@@ -16,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 		walk_animation.stop()
+		step_sound.stop()
 		
 	move_and_slide()
 	
