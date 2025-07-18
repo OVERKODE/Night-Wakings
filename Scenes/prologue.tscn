@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://0x2cpmejh1h4"]
+[gd_scene load_steps=6 format=3 uid="uid://0x2cpmejh1h4"]
 
 [ext_resource type="Script" uid="uid://dn4l15b36cktj" path="res://Scripts/prologue.gd" id="1_wl3ap"]
 [ext_resource type="Texture2D" uid="uid://diltkscr1eiht" path="res://Materials/Prologue/sprite_1.jpg" id="2_bem4f"]
 [ext_resource type="Texture2D" uid="uid://b262if0j2spnr" path="res://Materials/Prologue/sprite_2.jpg" id="3_vns27"]
 [ext_resource type="Texture2D" uid="uid://b5rxs2hl8l515" path="res://Materials/Prologue/sprite_3.jpg" id="4_jiqjm"]
+[ext_resource type="AudioStream" uid="uid://5ja8phxia4rg" path="res://Materials/Sounds/keyboard_sound.ogg" id="5_bem4f"]
 
 [node name="prologue" type="Control"]
 layout_mode = 3
@@ -27,3 +28,6 @@ texture = ExtResource("3_vns27")
 visible = false
 position = Vector2(960, 540)
 texture = ExtResource("4_jiqjm")
+
+[node name="keyboard_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bem4f")

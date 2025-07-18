@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://btqpay2fa40xp"]
 
 [ext_resource type="Script" uid="uid://bxslabovrvvop" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="AudioStream" uid="uid://cdoiyuivvno07" path="res://Materials/Sounds/stepps.ogg" id="2_cvnsp"]
+[ext_resource type="AudioStream" uid="uid://b8d47iliefnlt" path="res://Materials/Sounds/steps.ogg" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 
@@ -34,7 +34,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_v0iea"]
 resource_name = "walk"
-length = 1.05
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,7 +42,7 @@ tracks/0/path = NodePath("camera:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.525, 1.05),
+"times": PackedFloat32Array(0, 0.6, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.6, 0), Vector3(0, 0.75, 0), Vector3(0, 0.6, 0)]
