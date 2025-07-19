@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://0x2cpmejh1h4"]
+[gd_scene load_steps=8 format=3 uid="uid://0x2cpmejh1h4"]
 
 [ext_resource type="Script" uid="uid://dn4l15b36cktj" path="res://Scripts/prologue.gd" id="1_wl3ap"]
 [ext_resource type="Texture2D" uid="uid://diltkscr1eiht" path="res://Materials/Prologue/sprite_1.jpg" id="2_bem4f"]
 [ext_resource type="Texture2D" uid="uid://b262if0j2spnr" path="res://Materials/Prologue/sprite_2.jpg" id="3_vns27"]
 [ext_resource type="Texture2D" uid="uid://b5rxs2hl8l515" path="res://Materials/Prologue/sprite_3.jpg" id="4_jiqjm"]
 [ext_resource type="AudioStream" uid="uid://5ja8phxia4rg" path="res://Materials/Sounds/keyboard_sound.ogg" id="5_bem4f"]
+[ext_resource type="Texture2D" uid="uid://bnp4crarcom0w" path="res://Materials/Time_sprites/12pm.jpg" id="5_jiqjm"]
+[ext_resource type="AudioStream" uid="uid://d2mpvi7docqw1" path="res://Materials/Sounds/changing_sound.ogg" id="7_jiqjm"]
 
 [node name="prologue" type="Control"]
 layout_mode = 3
@@ -29,5 +31,18 @@ visible = false
 position = Vector2(960, 540)
 texture = ExtResource("4_jiqjm")
 
+[node name="Sprite4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("5_jiqjm")
+
 [node name="keyboard_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_bem4f")
+
+[node name="changing_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_jiqjm")
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

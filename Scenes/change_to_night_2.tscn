@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwhx5pvtf7d1l"]
+
+[ext_resource type="Texture2D" uid="uid://cos8hd4uywf6l" path="res://Materials/Time_sprites/2am.jpg" id="1_7ukcx"]
+[ext_resource type="Script" uid="uid://ddvrnqdsk7x4q" path="res://Scripts/change_to_night_2.gd" id="1_w4g8c"]
+[ext_resource type="AudioStream" uid="uid://d2mpvi7docqw1" path="res://Materials/Sounds/changing_sound.ogg" id="3_ilwgr"]
+
+[node name="change_to_night_2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4g8c")
+
+[node name="2Am" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+texture = ExtResource("1_7ukcx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="change_scene" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ilwgr")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

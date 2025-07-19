@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ow6dao0qgldu"]
+[gd_scene load_steps=33 format=3 uid="uid://ow6dao0qgldu"]
 
 [ext_resource type="ArrayMesh" uid="uid://bm8k1dagrjmi" path="res://Materials/Models/house.obj" id="1_3jr7h"]
 [ext_resource type="ArrayMesh" uid="uid://d8vauq1tea7w" path="res://Materials/Models/table.obj" id="2_iqtyj"]
@@ -7,9 +7,9 @@
 [ext_resource type="ArrayMesh" uid="uid://4yev1p5gwpi1" path="res://Materials/Models/work_table.obj" id="5_l3jqw"]
 [ext_resource type="ArrayMesh" uid="uid://fr7mpg075taw" path="res://Materials/Models/laptop.obj" id="6_gau5j"]
 [ext_resource type="Texture2D" uid="uid://bubxp7av6a6tp" path="res://Materials/Sprites/windy.png" id="7_7ug6d"]
+[ext_resource type="ArrayMesh" uid="uid://1cqhip0sr18a" path="res://Materials/Models/fridge.obj" id="8_gau5j"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iqtyj"]
-size = Vector3(4.29176, 2.59613, 3.34766)
+[sub_resource type="GDScript" id="GDScript_l3jqw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xi0mm"]
 size = Vector3(0.119141, 3.46227, 8.98882)
@@ -77,16 +77,16 @@ size = Vector3(2.75726, 2.05261, 1.73361)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lv2cm"]
 size = Vector3(1, 2.05646, 0.621094)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqtyj"]
+size = Vector3(4.29176, 2.59613, 3.34766)
+
 [node name="house" type="Node3D"]
+script = SubResource("GDScript_l3jqw")
 
 [node name="House" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_3jr7h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="House"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="House/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.67481, 0.798065, -11.866)
-shape = SubResource("BoxShape3D_iqtyj")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="House/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0876, 1.60235, -9.57289)
@@ -176,6 +176,12 @@ shape = SubResource("BoxShape3D_rss08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61909, 0.528229, -2.76195)
 shape = SubResource("BoxShape3D_lv2cm")
 
+[node name="bed_body" type="StaticBody3D" parent="House"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/bed_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.67481, 0.798065, -11.866)
+shape = SubResource("BoxShape3D_iqtyj")
+
 [node name="Table" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.655, 0, 0, 0, 1.655, 0, 0, 0, 1.655, 0.772174, 0, -10.3693)
 mesh = ExtResource("2_iqtyj")
@@ -230,3 +236,7 @@ skeleton = NodePath("../House/StaticBody3D")
 [node name="windy" type="Sprite3D" parent="."]
 transform = Transform3D(0.038, 0, 0, 0, 0.0375322, 0.00594451, 0, -0.00594451, 0.0375322, 2.57426, 1.38675, -3.86648)
 texture = ExtResource("7_7ug6d")
+
+[node name="Fridge" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.42598e-08, 0, -0.555, 0, 0.555, 0, 0.555, 0, -2.42598e-08, 3.57499, 0, -7.99965)
+mesh = ExtResource("8_gau5j")

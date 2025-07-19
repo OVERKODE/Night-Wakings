@@ -4,12 +4,18 @@ var speed = 1
 var sensivity = 0.003
 var rotation_x = 0
 var rotation_y = 0
-@onready var walk_animation = $animation
+var task_is_completed = false
+var check_window = false
+@onready var animation = $animation
 @onready var step_sound = $steps_sound
+@onready var rain_sound = $loop_rain
+@onready var task = $goal/task
+@onready var task_completed = $goal/task_completed
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	rain_sound.play("rain")
+	
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector3.ZERO
 	if Input.is_action_pressed("move_forward"):
@@ -26,14 +32,25 @@ func _physics_process(delta: float) -> void:
 	if move_dir:
 		velocity.z = move_dir.z * speed
 		velocity.x = move_dir.x * speed
-		walk_animation.play("walk")
+		animation.play("walk")
 	else:
 		velocity.x = 0
 		velocity.z = 0
-		walk_animation.stop()
+		animation.stop()
 		step_sound.stop()
 		
 	move_and_slide()
+	
+	var look = $camera/look
+	if look.is_colliding():
+		var object = look.get_collider()
+		if object.name == "glass_body" and Input.is_action_just_pressed("interact"):
+			object.hide()
+			task.hide()
+			task_completed.show()
+			task_is_completed = true
+		if object.name == "bed_body" and task_is_completed == true and Input.is_action_just_pressed("interact"):
+			get_tree().change_scene_to_file("res://Scenes/change_to_night_2.tscn")
 	
 func _input(e: InputEvent) -> void:
 	if e is InputEventMouseMotion:

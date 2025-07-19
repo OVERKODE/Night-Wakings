@@ -1,26 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtoo3nssgncs2"]
+[gd_scene load_steps=13 format=3 uid="uid://dtoo3nssgncs2"]
 
-[ext_resource type="Script" uid="uid://diug6g8e2pcg" path="res://Scripts/night_1.gd" id="1_fx6hh"]
 [ext_resource type="PackedScene" uid="uid://ow6dao0qgldu" path="res://Scenes/house.tscn" id="3_te7d1"]
+[ext_resource type="Texture2D" uid="uid://cagronis7tjsd" path="res://Materials/Tasks/task_night_1.png" id="3_uf72e"]
 [ext_resource type="PackedScene" uid="uid://btqpay2fa40xp" path="res://Scenes/player.tscn" id="4_uf72e"]
+[ext_resource type="Texture2D" uid="uid://copblyjydh272" path="res://Materials/Tasks/task_night_1_completed.png" id="4_xrqs8"]
+[ext_resource type="ArrayMesh" uid="uid://dqlarwsxfeg2x" path="res://Materials/Models/glass.obj" id="5_fx6hh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mmio"]
+[sub_resource type="GDScript" id="GDScript_fx6hh"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	pass
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrqs8"]
 albedo_color = Color(0, 0.208963, 9.62615e-08, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j1gpt"]
-material = SubResource("StandardMaterial3D_3mmio")
+material = SubResource("StandardMaterial3D_xrqs8")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6p0rf"]
 
-[sub_resource type="Sky" id="Sky_te7d1"]
+[sub_resource type="Sky" id="Sky_ewteu"]
 sky_material = SubResource("PanoramaSkyMaterial_6p0rf")
 
 [sub_resource type="Environment" id="Environment_uf72e"]
 background_mode = 2
-sky = SubResource("Sky_te7d1")
+sky = SubResource("Sky_ewteu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fx6hh"]
 
 [node name="Night 1" type="Node3D"]
-script = ExtResource("1_fx6hh")
+script = SubResource("GDScript_fx6hh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(28.05, 0, 0, 0, 28.05, 0, 0, 0, 28.05, 0.0140185, 2.38419e-07, 0.0141916)
@@ -36,5 +47,29 @@ light_color = Color(0.454524, 0.454524, 0.454524, 1)
 [node name="player" parent="." instance=ExtResource("4_uf72e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6682, 1.15106, -7.79791)
 
+[node name="goal" type="CanvasLayer" parent="player"]
+
+[node name="task" type="TextureRect" parent="player/goal"]
+offset_right = 400.0
+offset_bottom = 250.0
+texture = ExtResource("3_uf72e")
+
+[node name="task_completed" type="TextureRect" parent="player/goal"]
+visible = false
+offset_right = 400.0
+offset_bottom = 250.0
+texture = ExtResource("4_xrqs8")
+
 [node name="house" parent="." instance=ExtResource("3_te7d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0662212, 0)
+
+[node name="glass_body" type="StaticBody3D" parent="."]
+transform = Transform3D(2.975, 0, 0, 0, 2.975, 0, 0, 0, 2.975, -0.322833, 1.3055, -0.426986)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="glass_body"]
+transform = Transform3D(0.095, 0, 0, 0, 0.095, 0, 0, 0, 0.095, 0, 0.0496596, 0.00228314)
+shape = SubResource("BoxShape3D_fx6hh")
+
+[node name="glass" type="MeshInstance3D" parent="glass_body"]
+mesh = ExtResource("5_fx6hh")
+skeleton = NodePath("../..")
