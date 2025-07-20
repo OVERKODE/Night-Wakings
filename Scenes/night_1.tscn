@@ -9,8 +9,21 @@
 [sub_resource type="GDScript" id="GDScript_fx6hh"]
 script/source = "extends Node3D
 
-func _ready() -> void:
-	pass
+@onready var task = $player/goal/task
+@onready var task_completed = $player/goal/task_completed
+var task_is_completed = false
+
+func _process(delta: float) -> void:
+	var look = $player/camera/look
+	if look.is_colliding():
+		var object = look.get_collider()
+		if object.name == \"glass_body\" and Input.is_action_just_pressed(\"interact\"):
+			object.hide()
+			task.hide()
+			task_completed.show()
+			task_is_completed = true
+		if object.name == \"bed_body\" and task_is_completed == true and Input.is_action_just_pressed(\"interact\"):
+			get_tree().change_scene_to_file(\"res://Scenes/change_to_night_2.tscn\")
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrqs8"]
