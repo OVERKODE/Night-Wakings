@@ -1,4 +1,4 @@
-### Night Wakings
+# Night Wakings
 <p>A small indi-horror inside your house...</p>
 <h3>Now released!</h3>
 <p></p>
