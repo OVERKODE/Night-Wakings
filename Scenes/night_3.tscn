@@ -1,0 +1,154 @@
+[gd_scene load_steps=22 format=3 uid="uid://cyrxonnej0c80"]
+
+[ext_resource type="PackedScene" uid="uid://ow6dao0qgldu" path="res://Scenes/house.tscn" id="1_dyec4"]
+[ext_resource type="Script" uid="uid://lanrd0ks7ss7" path="res://Scripts/night_3.gd" id="1_w8bao"]
+[ext_resource type="PackedScene" uid="uid://btqpay2fa40xp" path="res://Scenes/player.tscn" id="2_w8bao"]
+[ext_resource type="AudioStream" uid="uid://cp1pv2ufmr0uk" path="res://Materials/Sounds/broken_window.ogg" id="3_a6rm6"]
+[ext_resource type="Texture2D" uid="uid://onlwg37pnasi" path="res://Materials/Tasks/night_3_task1.png" id="4_vq84v"]
+[ext_resource type="ArrayMesh" uid="uid://b463gx5u5up6f" path="res://Materials/Models/black_monster.obj" id="4_wc350"]
+[ext_resource type="Texture2D" uid="uid://2sjq6pra7yg7" path="res://Materials/Tasks/night_3_task2.png" id="5_xt5as"]
+[ext_resource type="Texture2D" uid="uid://c631375cv467d" path="res://Materials/Tasks/night_3_task3.png" id="6_204hs"]
+[ext_resource type="AudioStream" uid="uid://bs16l2ojm0g7b" path="res://Materials/Sounds/dissapeared_sound.ogg" id="6_a6rm6"]
+[ext_resource type="Texture2D" uid="uid://d3ckeinf6ec6u" path="res://Materials/Player_statements/wt.png" id="7_4oj0k"]
+[ext_resource type="Texture2D" uid="uid://dbffxbdpb8t53" path="res://Materials/Player_statements/missad.png" id="8_dkbmg"]
+[ext_resource type="ArrayMesh" uid="uid://dqlarwsxfeg2x" path="res://Materials/Models/glass.obj" id="12_xt5as"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mmio"]
+albedo_color = Color(0, 0.208963, 9.62615e-08, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w0f22"]
+material = SubResource("StandardMaterial3D_3mmio")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vhanj"]
+
+[sub_resource type="Sky" id="Sky_te7d1"]
+sky_material = SubResource("PanoramaSkyMaterial_vhanj")
+
+[sub_resource type="Environment" id="Environment_g5gh2"]
+background_mode = 2
+sky = SubResource("Sky_te7d1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq84v"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8bao"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_204hs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xt5as"]
+
+[node name="night_3" type="Node3D"]
+script = ExtResource("1_w8bao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.05, 0, 0, 0, 28.05, 0, 0, 0, 28.05, 0, 0, 0)
+mesh = SubResource("PlaneMesh_w0f22")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g5gh2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.00345675, 0.999971, 0.00675945, -0.455299, -0.00759205, 0.890306, 0.890332, 0, 0.455312, 0, 9.38169, -6.39814)
+light_color = Color(0.454524, 0.454524, 0.454524, 1)
+
+[node name="house" parent="." instance=ExtResource("1_dyec4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+
+[node name="player" parent="." instance=ExtResource("2_w8bao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.668, 1.151, -7.798)
+
+[node name="goal" type="CanvasLayer" parent="player"]
+
+[node name="task" type="TextureRect" parent="player/goal"]
+offset_right = 400.0
+offset_bottom = 250.0
+texture = ExtResource("4_vq84v")
+
+[node name="task_2" type="TextureRect" parent="player/goal"]
+visible = false
+offset_right = 400.0
+offset_bottom = 250.0
+texture = ExtResource("5_xt5as")
+
+[node name="task_3" type="TextureRect" parent="player/goal"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_204hs")
+
+[node name="player_statement" type="TextureRect" parent="player/goal"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -305.435
+offset_right = 250.0
+offset_bottom = -155.435
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_4oj0k")
+
+[node name="player_statement_2" type="TextureRect" parent="player/goal"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -454.33
+offset_right = 250.0
+offset_bottom = -4.33008
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_dkbmg")
+
+[node name="broken_window" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62312, 2.9317)
+stream = ExtResource("3_a6rm6")
+autoplay = true
+
+[node name="monster" type="StaticBody3D" parent="."]
+transform = Transform3D(1.85083e-09, 0.015, -5.39636e-10, 0.00617272, -2.69818e-10, 0.013671, 0.013671, -1.90892e-09, -0.00617272, -0.275268, 0.1049, -4.54895)
+
+[node name="BlackMonster" type="MeshInstance3D" parent="monster"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0, 0)
+mesh = ExtResource("4_wc350")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vq84v")
+
+[node name="shape" type="CollisionShape3D" parent="monster"]
+transform = Transform3D(2.00962e-05, 61.7271, 136.71, 150, -6.55671e-06, -1.90892e-05, -1.87968e-06, 136.71, -61.7271, -54.693, -158.385, 120.188)
+shape = SubResource("BoxShape3D_w8bao")
+
+[node name="dissapeared_sound" type="AudioStreamPlayer3D" parent="monster"]
+stream = ExtResource("6_a6rm6")
+
+[node name="glass_body" type="StaticBody3D" parent="."]
+transform = Transform3D(2.975, 0, 0, 0, 2.975, 0, 0, 0, 2.975, -3.68592, 0.0471193, -4.28645)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="glass_body"]
+transform = Transform3D(0.095, 0, 0, 0, 0.095, 0, 0, 0, 0.095, 0, 0.0496596, 0.00228314)
+shape = SubResource("BoxShape3D_204hs")
+
+[node name="glass" type="MeshInstance3D" parent="glass_body"]
+mesh = ExtResource("12_xt5as")
+skeleton = NodePath("../..")
+
+[node name="BlackMonster" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00488352, 0.0141828, 6.55671e-10, 2.13466e-10, -6.19949e-10, 0.015, 0.0141828, 0.00488352, 2.86603e-17, -8.31983, 0, -7.57831)
+visible = false
+mesh = ExtResource("4_wc350")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vq84v")
+
+[node name="final" type="StaticBody3D" parent="."]
+transform = Transform3D(4.035, 0, 0, 0, 4.035, 0, 0, 0, 4.035, -6.06713, 0, -5.99541)
+
+[node name="shape" type="CollisionShape3D" parent="final"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0885786, 0, 0)
+shape = SubResource("BoxShape3D_xt5as")
+disabled = true

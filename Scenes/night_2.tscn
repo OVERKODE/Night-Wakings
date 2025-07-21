@@ -16,21 +16,13 @@ script/source = "extends Node3D
 @onready var task2 = $player/goal/task_2
 @onready var task3 = $player/goal/task_3
 @onready var player_st = $player/goal/player_statement
-var timer = 0
 var bed_is_open = false
 
 func _process(delta: float) -> void:
-	if $knocks.playing == true:
-		task1.show()
-		task2.hide()
-		player_st.hide()
-	else:
+	if $knocks.playing == false:
 		task1.hide()
 		task2.show()
 		player_st.show()
-		while timer < 5000:
-			timer += 1 * delta
-			print(timer)
 	
 	var look = $player/camera/look
 	if look.is_colliding():
@@ -41,27 +33,23 @@ func _process(delta: float) -> void:
 			task3.show()
 			bed_is_open = true
 		if object.name == \"bed_body\" and bed_is_open == true and Input.is_action_just_pressed(\"interact\"):
-			get_tree().change_scene_to_file(\"res://Scenes/menu.tscn\")
-
-		if timer >= 5000:
-			player_st.hide()
-			print(\"finished\")
+			get_tree().change_scene_to_file(\"res://Scenes/change_to_scene_3.tscn\")
 "
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mmio"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p045"]
 albedo_color = Color(0, 0.208963, 9.62615e-08, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vrlo8"]
-material = SubResource("StandardMaterial3D_3mmio")
+material = SubResource("StandardMaterial3D_2p045")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h0iig"]
 
-[sub_resource type="Sky" id="Sky_te7d1"]
+[sub_resource type="Sky" id="Sky_bmphh"]
 sky_material = SubResource("PanoramaSkyMaterial_h0iig")
 
 [sub_resource type="Environment" id="Environment_ra5fi"]
 background_mode = 2
-sky = SubResource("Sky_te7d1")
+sky = SubResource("Sky_bmphh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2p045"]
 
@@ -119,12 +107,8 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("6_f18v0")
 
-[node name="Timer" type="Timer" parent="player/goal"]
-process_callback = 0
-wait_time = 3.0
-
 [node name="glass_body" type="StaticBody3D" parent="."]
-transform = Transform3D(2.975, 0, 0, 0, 2.975, 0, 0, 0, 2.975, -3.17282, 0.938475, -0.426986)
+transform = Transform3D(2.975, 0, 0, 0, 2.975, 0, 0, 0, 2.975, -3.19973, 0.0807994, 1.85163)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="glass_body"]
 transform = Transform3D(0.095, 0, 0, 0, 0.095, 0, 0, 0, 0.095, 0, 0.0496596, 0.00228314)
@@ -138,5 +122,3 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0779, 1.55988, -4.61861)
 stream = ExtResource("8_tfh8d")
 autoplay = true
-
-[connection signal="timeout" from="player/goal/Timer" to="." method="_on_timer_timeout"]

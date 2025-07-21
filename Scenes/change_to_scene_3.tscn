@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://4xf7kkdnamai"]
+
+[ext_resource type="Script" uid="uid://cu6xyu3e1f7ua" path="res://Scripts/change_to_scene_3.gd" id="1_yn0r3"]
+[ext_resource type="Texture2D" uid="uid://bj757ascs1s17" path="res://Materials/Time_sprites/333am.jpg" id="2_2kg6p"]
+[ext_resource type="AudioStream" uid="uid://d2mpvi7docqw1" path="res://Materials/Sounds/changing_sound.ogg" id="3_8oeex"]
+
+[node name="change_to_scene_3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yn0r3")
+
+[node name="333Am" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_2kg6p")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="change_scene" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8oeex")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
