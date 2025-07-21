@@ -1,6 +1,6 @@
 # Night Wakings
-<p>A small indi-horror inside your house...</p>
-<h3>Now released!</h3>
+<p><i>A small indi-horror inside your house...</i></p>
+<h4>Now released!</h4>
 <p></p>
 <h3>How to play?</h3>
 <ol>
@@ -11,4 +11,4 @@
   <li>Enjoy!</li>
 </ol>
 
-<h3>MIT LICENSE, BUT DON'T THE WHOLE PROJECT, PLEASE :)</h3>
+<h3><i>MIT LICENSE, BUT DON'T THE WHOLE PROJECT, PLEASE :)</i></h3>
