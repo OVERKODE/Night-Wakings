@@ -11,4 +11,4 @@
   <li>Enjoy!</li>
 </ol>
 
-<h3><i>MIT LICENSE, BUT DON'T THE WHOLE PROJECT, PLEASE :)</i></h3>
+<h3><i>MIT LICENSE, BUT DON'T TAKE THE WHOLE PROJECT, PLEASE :)</i></h3>
